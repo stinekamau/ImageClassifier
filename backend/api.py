@@ -5,13 +5,13 @@ app=FastAPI()
 @app.get('/')
 def home():
     print('Hello')
-    return {'type':None}
+    return 'identification'
 
-@app.get('/something')
+@app.get('/home')
 def some():
     return {'detail':'Niice'}
 
-@app.get('/images/classifier/{image}')
+@app.get('/images/something')
 def process(image):
     return {'type':'hello'}
 
