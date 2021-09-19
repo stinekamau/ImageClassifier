@@ -6,9 +6,9 @@ from pytesseract import *
 import re
 
 class CascadeClassifier:
-    def __init__(self) -> None:
+    def __init__(self,image) -> None:
         
-        self.image=None
+        self.image=cv2.imread(image)
         self.type_=None
 
     def preprocessing(self):
@@ -38,23 +38,35 @@ class CascadeClassifier:
 
                 locator = []
 
-        search_id=re.findall('')
-        search_passport=re.findall('')
+        found=self.traverse(actual_words)
+       
 
-        #Initiate the classifiers to their respective classes
-        # self.id_xml=cv2.CascadeClassifier(CascadeClassifier.id_xml_path)
-        # self.passport_xml=cv2.CascadeClassifier(CascadeClassifier.passport_xml_path)
+        if found=='id':
+            self.type_=found
+        elif found=='passport':
+            self.type_=found
 
-        # #Detect the   type of image
-        # value1=self.id_xml.detectMultiScale(grayed_image,minSize=(20,20))
-        # value2=self.passport_xml.detectMultiScale(grayed_image,minSize=(20,20))
+        return {'type':self.type_}
 
-        # if value1>value2:
-        #     self.type='id'
-        # if value2>value1:
-        #     self.type='passport'
-        # else:
-        #     self.type=None
+
+
+
+    def  traverse(self,arr):
+        for element in arr:
+            for var in element:
+                if re.match(r'passp.*?|passport|pas.*?',var,re.I|re.DOTALL):
+                    return 'passport'
+                if re.match(r'identification|id|ide.*?',var,re.I|re.DOTALL):
+                    return 'id'
+        return None
+
+    def process(self):
+        return self.preprocessing()
+
+
+if __name__=='__main__':
+    c=CascadeClassifier(r'C:/Users/user/Desktop/national.jpg')
+    c.process()
 
         
 
