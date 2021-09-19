@@ -65,8 +65,8 @@ class CascadeClassifier:
 
 
 if __name__=='__main__':
-    c=CascadeClassifier(r'C:/Users/user/Desktop/national.jpg')
-    c.process()
+    c=CascadeClassifier(r'C:/Users/user/Desktop/passport.jpg')
+    print(f'Value of the photo is {c.process()}')
 
         
 
