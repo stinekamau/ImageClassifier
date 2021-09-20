@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import json
+from pydantic import BaseModel
+from typing import Optional
+from fastapi import Form, Depends
+from checkImage import CascadeClassifier
 
 app=FastAPI()
 
@@ -18,11 +22,18 @@ def home():
 
 @app.get('/home')
 def some():
-    return json.dumps({'type':'passport'})
+
+    return "Type is passport"
 
 
-@app.get('/images/something')
+@app.post('/images/something')
 def process(image):
-    return {'type':'hello'}
+    c=CascadeClassifier(image)
+    output=c.process()
+    return output 
+
+
+
+
 
 
