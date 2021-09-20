@@ -4,17 +4,17 @@ import json
 
 app=FastAPI()
 
-origins=['http://localhost','http://localhost:8080','http://localhost:*','http.localhost:2715']
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex='http://.*'
+    allow_origins='*'
 
 )
 
 @app.get('/')
 def home():
-    return json.dumps({'type':'identification'})
+    return json.dumps({"type":"identification"})
 
 @app.get('/home')
 def some():
