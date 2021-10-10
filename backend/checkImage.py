@@ -54,7 +54,7 @@ class CascadeClassifier:
     def  traverse(self,arr):
         for element in arr:
             for var in element:
-                if re.match(r'passp.*?|passport|pas.*?',var,re.I|re.DOTALL):
+                if re.match(r'passp.*?|',var,re.I|re.DOTALL):
                     return 'passport'
                 if re.match(r'identification|id|ide.*?',var,re.I|re.DOTALL):
                     return 'id'
