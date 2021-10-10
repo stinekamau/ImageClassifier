@@ -3,7 +3,9 @@
 
 **Tesseract  needs to be running in your system [installation guide](https://tesseract-ocr.github.io/tessdoc/Installation.html)**
 
-Run the api.py to start  uvicorn and listen to [link](http://127.0.0.1:8000) 
+Run the api.py to start  uvicorn and listen to [link](http://127.0.0.1:8000)
+
+launch the display.html in your favourite browser
 
 Image uploaded may return null if pytesseract fails to identify the words it contain.
 
