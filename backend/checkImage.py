@@ -46,7 +46,7 @@ class CascadeClassifier:
         elif found=='passport':
             self.type_=found
 
-        return {'type':self.type_}
+        return {'type_':self.type_}
 
 
 

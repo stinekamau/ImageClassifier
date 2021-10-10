@@ -13,28 +13,27 @@ image_input.addEventListener("change", function() {
    document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
 });
    reader.readAsDataURL(this.files[0]);
+   var formData = new FormData();
+   formData.append("file", this.files[0]);
+   $.ajax({
+      url:"http://127.0.0.1:8000/home/process",
+      type: 'POST',
+      async: false,
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(data)
+      {
+        
+         document.getElementById('ans').value = data
+         json_value=JSON.parse()
+         alert("This will be printed on success"+data['type_'])
+      }
+      
+      // (data, status, jqXHR)=> alert("This will be printed on success"+data)
+   })
 });
 
-   const http = new XMLHttpRequest()
+  
 
-   http.open("GET", "http://127.0.0.1:8000/home");
-   http.send();
-   
-   http.onreadystatechange = function() {
-            
-      if(http.readyState == 4) {
-         console.log("Value of response is hehe  : "+http.response)
-         document.getElementById('ans').value = http.response;
-
-        
-      }
-   }
-   
-   http.onload = function() {
-      let responseObj = http.response;
-      alert(responseObj.message); 
-      console.log("Value of responseObj "+responseObj)
-      // Hello, world!
-    };
-    console.log("End of the function");
-   
